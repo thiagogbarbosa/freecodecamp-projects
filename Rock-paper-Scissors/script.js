@@ -60,6 +60,19 @@ function showResults(userOption) {
     };
 };
 
+function resetGame(){
+    playerScore = 0;
+    computerScore = 0;
+    playerScoreSpanElement.innerText = playerScore;
+    computerScoreSpanElement.innerText = computerScore;
+    winnerMsgElement.innerText ="";
+    roundResultsMsg.innerText ="";
+    optionsContainer.style.display = "block";
+    resetGameBtn.style.display = "none";
+};
+
+resetGameBtn.addEventListener("click",resetGame);
+
 const rockBtn = document.getElementById("rock-btn");
 const paperBtn = document.getElementById("paper-btn");
 const scissorsBtn = document.getElementById("scissors-btn");
