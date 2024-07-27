@@ -23,25 +23,25 @@ function getRoundResults(userOption){
 
     if(hasPlayerWonTheRound(userOption,computerResult)){
         playerScore++;
-        return "Player wins! ", userOption,"beats", computerResult;
+        return "Player wins! " + userOption + " beats " + computerResult;
     } else if(userOption===computerResult){
-        return "It's a tie! Both chose", userOption;
+        return "It's a tie! Both chose " + userOption;
     } else {
         computerScore++;
-        return "Computer wins! ", computerResult,"beats", userOption;
+        return "Computer wins! " + computerResult + " beats " + userOption;
     };
 };
 
 const playerScoreSpanElement = document.getElementById("player-score");
 const computerScoreSpanElement = document.getElementById("computer-score");
-const roundResultMsg = document.getElementById("results-msg");
+const roundResultsMsg = document.getElementById("results-msg");
 const winnerMsgElement = document.getElementById("winner-msg");
 const optionsContainer = document.querySelector(".options-container");
 const resetGameBtn = document.getElementById("reset-game-btn");
 
 function showResults(userOption) {
     //roundResultsMsg should be updated with the result of the round
-    roundResultMsg.innerText = getRoundResults(userOption);
+    roundResultsMsg.innerText = getRoundResults(userOption);
     //playerScoreSpanElement and computerScoreSpanElement should be updated to show the scores
     computerScoreSpanElement.innerText = computerScore;
     playerScoreSpanElement.innerText = playerScore;
