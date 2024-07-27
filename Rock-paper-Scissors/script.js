@@ -6,18 +6,17 @@ function getRandomComputerResult() {
     return options[randomIndex];
   };
 
-  console.log(getRandomComputerResult());
-
-  let playerScore = 0;
-  let computerScore = 0;
-
-function hasPlayerWonTheRound(player,computer) {
-    return (
-        (player === "Rock" && computer === "Scissors") ||
-        (player === "Scissors" && computer === "Paper") ||
-        (player === "Paper" && computer === "Rock")
-    );
-};
+  
+  function hasPlayerWonTheRound(player,computer) {
+      return (
+          (player === "Rock" && computer === "Scissors") ||
+          (player === "Scissors" && computer === "Paper") ||
+          (player === "Paper" && computer === "Rock")
+        );
+    };
+    
+let playerScore = 0;
+let computerScore = 0;
 
 function getRoundResults(userOption){
     const computerResult = getRandomComputerResult();
@@ -28,9 +27,21 @@ function getRoundResults(userOption){
     } else if(userOption===computerResult){
         return "It's a tie! Both chose", userOption;
     } else {
+        computerScore++;
         return "Computer wins! ", computerResult,"beats", userOption;
     };
 };
 
-console.log(getRoundResults("Rock"));
-console.log("Player Score: ", playerScore, "Computer Score: ", computerScore);
+const playerScoreSpanElement = document.getElementById("player-score");
+const computerScoreSpanElement = document.getElementById("computer-score");
+const roundResultMsg = document.getElementById("results-msg");
+
+function showResults(userOption) {
+    //roundResultsMsg should be updated with the result of the round
+    roundResultMsg.innerText = getRoundResults(userOption);
+    //playerScoreSpanElement and computerScoreSpanElement should be updated to show the scores
+    computerScoreSpanElement.innerText = computerScore;
+    playerScoreSpanElement.innerText = playerScore;
+};
+
+showResults("Rock");
