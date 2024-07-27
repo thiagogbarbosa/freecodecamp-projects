@@ -45,6 +45,19 @@ function showResults(userOption) {
     //playerScoreSpanElement and computerScoreSpanElement should be updated to show the scores
     computerScoreSpanElement.innerText = computerScore;
     playerScoreSpanElement.innerText = playerScore;
+
+    //Check if player or Computer reached three points
+    //If there is a winner show the resetGame Button
+
+    if(computerScore===3){
+        winnerMsgElement.innerText = "Computer has won the game!";
+        optionsContainer.style.display="none";
+        resetGameBtn.style.display="block";
+    } else if(playerScore===3){
+        winnerMsgElement.innerText = "Player has won the game!";
+        optionsContainer.style.display="none";
+        resetGameBtn.style.display="block";
+    };
 };
 
 const rockBtn = document.getElementById("rock-btn");
