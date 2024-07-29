@@ -6,3 +6,27 @@ and turn everything into the same case (lower or upper case)
 in order to check for palindromes.
 */
 
+//Getting DOM elements
+const palindromeInput = document.getElementById("text-input");
+const checkBtn = document.getElementById("check-btn");
+let userInput = [];
+
+//Check if is a valid input -- "Can't be null or space"
+function isValidInput(input){
+    if(input === null){
+        return true
+    } else if (typeof input === "string" && input.trim() !== ""){
+        return true;
+    } else{
+        return false
+    }
+};
+
+//standardize input, remove punctuation, spaces and symbols -> all to lowercase
+function clearInput(input){
+
+};
+//check if it is a palindrome
+function isApalindrome(){};
+
+//addEventListener
