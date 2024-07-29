@@ -23,10 +23,19 @@ function isValidInput(input){
 };
 
 //standardize input, remove punctuation, spaces and symbols -> all to lowercase
+//Input example "Aí, Lima falou: Olá, família
 function clearInput(input){
+    //punctuations
+    //spaces
+    //symbols
 
 };
+//Expected output: "ailimafalouolafamilia"
+
+
+
 //check if it is a palindrome
 function isApalindrome(){};
 
 //addEventListener
+checkBtn.addEventListener("click",);
