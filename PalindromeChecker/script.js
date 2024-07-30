@@ -25,10 +25,9 @@ function isValidInput(input){
 //standardize input, remove punctuation, spaces and symbols -> all to lowercase
 //Input example "Aí, Lima falou: Olá, família
 function clearInput(input){
-    //punctuations
-    //spaces
-    //symbols
-
+    let cleanString = input.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    let regex = /[^A-Za-z0-9_]/ig;
+    return cleanString.replace(regex,"");
 };
 //Expected output: "ailimafalouolafamilia"
 
