@@ -9,6 +9,7 @@ in order to check for palindromes.
 //Getting DOM elements
 const palindromeInput = document.getElementById("text-input");
 const checkBtn = document.getElementById("check-btn");
+const showResults = document.getElementById("result");
 let userInput = [];
 
 //Check if is a valid input -- "Can't be null or space"
@@ -27,14 +28,26 @@ function isValidInput(input){
 function clearInput(input){
     let cleanString = input.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
     let regex = /[^A-Za-z0-9_]/ig;
-    return cleanString.replace(regex,"");
+    cleanString = cleanString.replace(regex,"")
+    return cleanString;
 };
 //Expected output: "ailimafalouolafamilia"
 
-
-
 //check if it is a palindrome
-function isApalindrome(){};
+function isApalindrome(str){
+//compare the original string with reversed one
+//it can be done using methods or using loops.
+    const originalString = str;
+    let reversedString = clearInput(str).split("").reverse().join("");
+    const palindromeMsg = `<span><strong>${originalString}</strong> is a palindrome!</span>`;
+    if(reversedString === clearInput(str)){
+        showResults.style.display="block";
+        showResults.insertAdjacentHTML("beforeend",palindromeMsg);
+        return console.log("This is a palindrome");
+    };
+};
+
+isApalindrome("Subi no ônibus");
 
 //addEventListener
-checkBtn.addEventListener("click",);
+//checkBtn.addEventListener("click",);
