@@ -10,7 +10,6 @@ in order to check for palindromes.
 const palindromeInput = document.getElementById("text-input");
 const checkBtn = document.getElementById("check-btn");
 const showResults = document.getElementById("result");
-let userInput = [];
 
 //Check if is a valid input -- "Can't be null or space"
 function isValidInput(input){
@@ -37,17 +36,27 @@ function clearInput(input){
 function isApalindrome(str){
 //compare the original string with reversed one
 //it can be done using methods or using loops.
-    const originalString = str;
     let reversedString = clearInput(str).split("").reverse().join("");
-    const palindromeMsg = `<span><strong>${originalString}</strong> is a palindrome!</span>`;
-    if(reversedString === clearInput(str)){
-        showResults.style.display="block";
-        showResults.insertAdjacentHTML("beforeend",palindromeMsg);
-        return console.log("This is a palindrome");
-    };
+    return reversedString===clearInput(str)? true : false;
 };
 
-isApalindrome("Subi no ônibus");
-
+function displayResults(){
+    const isApalindromeBoolean = isApalindrome(palindromeInput.value);
+    showResults.style.display="block";
+    let palindromeMsg = `<span><strong>${palindromeInput.value}</strong> is a palindrome!</span>`;
+    if(isApalindromeBoolean){
+        return showResults.insertAdjacentHTML("beforeend",palindromeMsg)
+    } else {
+        palindromeMsg = `<span><strong>${palindromeInput.value}</strong> is not a palindrome!</span>`; 
+        return showResults.insertAdjacentHTML("beforeend", palindromeMsg);
+    }
+};
+//isApalindrome("Subi no Ônibus");
 //addEventListener
-//checkBtn.addEventListener("click",);
+//console.log(checkBtn);
+/*checkBtn.addEventListener("click", c => {
+    c = "olá";
+    console.log(c);
+} ); */
+
+checkBtn.addEventListener("click", displayResults);
