@@ -1,4 +1,4 @@
-/* Palindrome Checker. palindrome is a word or phrase that can be read
+/* Palindrome Checker. Palindrome is a word or phrase that can be read
 the same way forwards and backwards, ignoring punctuation, case and spacing
 
 You'll need to remove all non-alphanumeric characters (punctuation, spaces and symbols)
@@ -36,6 +36,7 @@ function clearInput(input){
 };
 //Expected output: "ailimafalouolafamilia"
 
+
 //check if it is a palindrome
 function isApalindrome(str){
 //compare the original string with reversed one
@@ -46,7 +47,6 @@ function isApalindrome(str){
 
 function displayResults(){
     const isApalindromeBoolean = isApalindrome(palindromeInput.value);
-    //showResults.style.display="block";
     let palindromeMsg = `
     <p class="user-input">
     <strong>${palindromeInput.value}</strong> is a palindrome.
@@ -63,12 +63,7 @@ function displayResults(){
         return showResults.innerHTML = palindromeMsg;
     }
 };
-//isApalindrome("Subi no Ônibus");
-//addEventListener
-//console.log(checkBtn);
-/*checkBtn.addEventListener("click", c => {
-    c = "olá";
-    console.log(c);
-} ); */
+console.log("resultado: ", isValidInput(clearInput("$%&!#")));
+console.log(isApalindrome("$%&!#"));
 
 checkBtn.addEventListener("click", displayResults);
