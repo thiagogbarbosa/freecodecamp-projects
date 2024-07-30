@@ -25,10 +25,14 @@ function isValidInput(input){
 //standardize input, remove punctuation, spaces and symbols -> all to lowercase
 //Input example "Aí, Lima falou: Olá, família
 function clearInput(input){
-    let cleanString = input.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
-    let regex = /[^A-Za-z0-9_]/ig;
-    cleanString = cleanString.replace(regex,"")
-    return cleanString;
+    if(isValidInput(input)){
+        let cleanString = input.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        let regex = /[^A-Za-z0-9]/ig;
+        cleanString = cleanString.replace(regex,"")
+        return cleanString;  
+    } else{
+        alert("Please input a value")
+    };
 };
 //Expected output: "ailimafalouolafamilia"
 
@@ -42,13 +46,21 @@ function isApalindrome(str){
 
 function displayResults(){
     const isApalindromeBoolean = isApalindrome(palindromeInput.value);
-    showResults.style.display="block";
-    let palindromeMsg = `<span><strong>${palindromeInput.value}</strong> is a palindrome!</span>`;
+    //showResults.style.display="block";
+    let palindromeMsg = `
+    <p class="user-input">
+    <strong>${palindromeInput.value}</strong> is a palindrome.
+    </p>
+    `;
     if(isApalindromeBoolean){
-        return showResults.insertAdjacentHTML("beforeend",palindromeMsg)
+        return showResults.innerHTML= palindromeMsg;
     } else {
-        palindromeMsg = `<span><strong>${palindromeInput.value}</strong> is not a palindrome!</span>`; 
-        return showResults.insertAdjacentHTML("beforeend", palindromeMsg);
+        palindromeMsg = `
+    <p class="user-input">
+    <strong>${palindromeInput.value}</strong> is not a palindrome.
+    </p>
+    `;
+        return showResults.innerHTML = palindromeMsg;
     }
 };
 //isApalindrome("Subi no Ônibus");
