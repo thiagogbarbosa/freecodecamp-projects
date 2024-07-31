@@ -1,9 +1,5 @@
-/* Palindrome Checker. Palindrome is a word or phrase that can be read
-the same way forwards and backwards, ignoring punctuation, case and spacing
-
-You'll need to remove all non-alphanumeric characters (punctuation, spaces and symbols)
-and turn everything into the same case (lower or upper case)
-in order to check for palindromes.
+/* Palindrome Checker Project. Palindrome is a word or phrase that can be read
+the same way forwards and backwards, ignoring punctuation (and symbols), case and spacing.
 */
 
 //Getting DOM elements
@@ -11,39 +7,35 @@ const palindromeInput = document.getElementById("text-input");
 const checkBtn = document.getElementById("check-btn");
 const showResults = document.getElementById("result");
 
-//Check if is a valid input -- "Can't be null or space"
+//isValidInput check if is a valid input. Input !== Null, "".
 function isValidInput(input){
-    if(input === null){
-        return true
-    } else if (typeof input === "string" && input.trim() !== ""){
-        return true;
-    } else{
-        return false
-    }
+    //If the input is a whitespace the method trim() should return an empty string.
+    return input !== null && typeof input === "string" && input.trim() !== ""? true : false;
 };
 
-//standardize input, remove punctuation, spaces and symbols -> all to lowercase
-//Input example "Aí, Lima falou: Olá, família
+//clearInput will remove punctuation, spaces(among words), symbols and set all to lower case if its a valid input.
 function clearInput(input){
     if(isValidInput(input)){
+        //normalizing the input by canonical decomposition and replacing the combining mark's code's
         let cleanString = input.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
-        let regex = /[^A-Za-z0-9]/ig;
-        cleanString = cleanString.replace(regex,"")
+        let regex = /[^A-Za-z0-9_]/ig;
+        cleanString = cleanString.replace(regex,"") //replacing every symbol but the underscore by an empty string
         return cleanString;  
     } else{
         alert("Please input a value")
+        return null
     };
 };
-//Expected output: "ailimafalouolafamilia"
 
-
-//check if it is a palindrome
+//isApalindrome checks if input is a palindrome by comparing the original input with the inverted input
 function isApalindrome(str){
-//compare the original string with reversed one
-//it can be done using methods or using loops.
+
+//It also could be done using loops but this was the solution I choose
     let reversedString = clearInput(str).split("").reverse().join("");
-    
-    //testing falsy values
+
+    //Checking for falsy values. If the input is just symbols it still will be a valid input
+    //then, when the clearInput() function is called the output will be an empty string
+    //which can't be a palindrome.
     if(!reversedString){
         return alert("Please, insert a valid input");
     } else if(reversedString===clearInput(str)) {
@@ -53,6 +45,7 @@ function isApalindrome(str){
     };
 };
 
+//displayResults shows to the user if the phrase or word is a palindrome or not.
 function displayResults(){
     const isApalindromeBoolean = isApalindrome(palindromeInput.value);
     let palindromeMsg = `
@@ -71,4 +64,5 @@ function displayResults(){
         return showResults.innerHTML = palindromeMsg;
     }
 };
-checkBtn.addEventListener("click", displayResults);
+
+checkBtn.addEventListener("click",displayResults);
