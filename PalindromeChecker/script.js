@@ -42,7 +42,15 @@ function isApalindrome(str){
 //compare the original string with reversed one
 //it can be done using methods or using loops.
     let reversedString = clearInput(str).split("").reverse().join("");
-    return reversedString===clearInput(str)? true : false;
+    
+    //testing falsy values
+    if(!reversedString){
+        return alert("Please, insert a valid input");
+    } else if(reversedString===clearInput(str)) {
+        return true
+    } else {
+        return false
+    };
 };
 
 function displayResults(){
@@ -63,7 +71,4 @@ function displayResults(){
         return showResults.innerHTML = palindromeMsg;
     }
 };
-console.log("resultado: ", isValidInput(clearInput("$%&!#")));
-console.log(isApalindrome("$%&!#"));
-
 checkBtn.addEventListener("click", displayResults);
