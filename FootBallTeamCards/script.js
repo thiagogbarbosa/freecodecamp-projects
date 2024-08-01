@@ -172,6 +172,6 @@ const myFavoriteFootballTeam = {
 };
 //freezing obj to cant change the properties 
 Object.freeze(myFavoriteFootballTeam);
-
 //Object destructuring to access elements
-const {sport, team} = myFavoriteFootballTeam;
+const {sport, team, year, players} = myFavoriteFootballTeam;
+const {coachName} = myFavoriteFootballTeam.headCoach;
