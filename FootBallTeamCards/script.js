@@ -170,4 +170,5 @@ const myFavoriteFootballTeam = {
     },
   ],
 };
- 
+//freezing obj to cant change the properties 
+Object.freeze(myFavoriteFootballTeam);
