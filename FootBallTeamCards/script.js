@@ -197,3 +197,36 @@ const setPlayerCards = (arr = players) => {
     )
     .join(""); //bcs map() will create a new array separated by commas
 };
+
+//create a function that will detect when a user makes a selection from the playersDropdownList
+playersDropdownList.addEventListener("change", (e) => {
+  playerCards.innerHTML = "";
+
+  switch (e.target.value) {
+    case "nickname":
+      setPlayerCards(players.filter((player) => player.nickname !== null));
+      break;
+    case "forward":
+      setPlayerCards(players.filter((player) => player.position === "forward"));
+      break;
+    case "midfielder":
+      setPlayerCards(
+        players.filter((player) => player.position === "midfielder")
+      );
+      break;
+    case "defender":
+      setPlayerCards(
+        players.filter((player) => player.position === "defender")
+      );
+      break;
+    case "goalkeeper":
+      setPlayerCards(
+        players.filter((player) => player.position === "goalkeeper")
+      );
+      break;
+
+  default:
+  setPlayerCards();
+
+  };
+});
