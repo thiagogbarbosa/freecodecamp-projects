@@ -30,3 +30,19 @@ discardBtn.addEventListener("click",()=>{
     confirmCloseDialog.close();
     taskForm.classList.toggle("hidden");
   });
+
+taskForm.addEventListener("submit",(e)=>{
+    e.preventDefault(); //to stop the page to refresh after submiting
+
+//Determine wheter the task being added to the taskData array already exists
+//if doesn't- add it. If it does- update it.
+
+    const dataArrIndex = taskData.findIndex((item) => item.id === currentTask.id);
+    const taskObj = {
+
+    };
+    console.log(taskObj);
+});
+
+
+
