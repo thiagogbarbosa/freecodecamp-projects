@@ -14,6 +14,14 @@ const descriptionInput = document.getElementById("description-input");
 const taskData = []; //And save them on localStorage
 let currentTask = {}; //to track the state when editin and discarding tasks
 
+const reset = ()=>{
+    titleInput.value = "";
+    dateInput.value = "";
+    descriptionInput.value = "";
+    taskForm.classList.toggle("hidden");
+    currentTask = {};
+};
+
 openTaskFormBtn.addEventListener("click",()=>{
     taskForm.classList.toggle("hidden")
   });
@@ -62,7 +70,7 @@ taskForm.addEventListener("submit",(e)=>{
         } 
       );
     
-      taskForm.classList.toggle("hidden");
+      reset();
 });
 
 
