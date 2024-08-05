@@ -26,9 +26,16 @@ openTaskFormBtn.addEventListener("click",()=>{
     taskForm.classList.toggle("hidden")
   });
 
-closeTaskFormBtn.addEventListener("click",()=>{
-    confirmCloseDialog.showModal();
-});
+//Display cancel and discard inly if there is some text preseznt in the input fields
+closeTaskFormBtn.addEventListener("click", () => {
+    const formInputsContainValues = titleInput.value || dateInput.value || descriptionInput.value;
+  
+    if (formInputsContainValues) {
+      confirmCloseDialog.showModal();
+    } else {
+      reset();
+    }
+  });
 
 cancelBtn.addEventListener("click",()=>{
     confirmCloseDialog.close();
@@ -36,7 +43,7 @@ cancelBtn.addEventListener("click",()=>{
 
 discardBtn.addEventListener("click",()=>{
     confirmCloseDialog.close();
-    taskForm.classList.toggle("hidden");
+    reset();
   });
 
 taskForm.addEventListener("submit",(e)=>{
