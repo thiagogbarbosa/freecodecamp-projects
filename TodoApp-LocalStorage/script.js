@@ -11,7 +11,7 @@ const dateInput = document.getElementById("date-input");
 const descriptionInput = document.getElementById("description-input");
 
 //Store all the tasks along with their associated data
-const taskData = []; //And save them on localStorage
+const taskData = JSON.parse(localStorage.getItem("data"))||[];; //And save them on localStorage
 let currentTask = {}; //to track the state when editin and discarding tasks
 
 const addOrUpdateTask = ()=>{
@@ -25,7 +25,13 @@ const addOrUpdateTask = ()=>{
     
        if (dataArrIndex === -1) {
         taskData.unshift(taskObj);
+      }else{
+        taskData[dataArrIndex]= taskObj;
       };
+
+      localStorage.setItem("data", JSON.stringify(taskData));
+
+
     updateTaskContainer();
     reset();
 };
@@ -54,6 +60,9 @@ const deleteTask = (buttonEl)=>{
   const dataArrIndex = taskData.findIndex((item)=>item.id === buttonEl.parentElement.id);
   buttonEl.parentElement.remove();
   taskData.splice(dataArrIndex,1);
+
+  localStorage.setItem("data",JSON.stringify(taskData));
+
 };
 
 const editTask = (buttonEl) => {
@@ -80,6 +89,11 @@ const reset = ()=>{
     descriptionInput.value = "";
     taskForm.classList.toggle("hidden");
     currentTask = {};
+    addOrUpdateTask.innerText = "Add Task";
+};
+
+if(taskData.length){
+  updateTaskContainer()
 };
 
 openTaskFormBtn.addEventListener("click",()=>{
@@ -89,8 +103,9 @@ openTaskFormBtn.addEventListener("click",()=>{
 //Display cancel and discard inly if there is some text preseznt in the input fields
 closeTaskFormBtn.addEventListener("click", () => {
     const formInputsContainValues = titleInput.value || dateInput.value || descriptionInput.value;
-  
-    if (formInputsContainValues) {
+    const formInputValuesUpdated = titleInput.value !== currentTask.title || dateInput.value !== currentTask.date || descriptionInput.value !== currentTask.description;  
+    
+    if (formInputsContainValues && formInputValuesUpdated) {
       confirmCloseDialog.showModal();
     } else {
       reset();
@@ -111,6 +126,3 @@ taskForm.addEventListener("submit",(e)=>{
 
     addOrUpdateTask();
 });
-
-
-
