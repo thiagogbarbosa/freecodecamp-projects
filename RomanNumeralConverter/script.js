@@ -25,7 +25,7 @@ const inputHandler = (input)=>{
     } else if(input<0){
         output.textContent = "Please enter a number greater than or equal to 1"
     } else if(input>=4000){
-        output.textContent = "Please enter a number less or equal to 3999"
+        output.textContent = "Please enter a number less than or equal to 3999"
     } else{
         output.textContent = arabToRoman(input);
     }
@@ -54,3 +54,5 @@ convertBtn.addEventListener("click",()=>{
     console.log("testando aqui",inputValue);
     inputHandler(inputValue);
 });
+
+//Todo: To refactor this code
